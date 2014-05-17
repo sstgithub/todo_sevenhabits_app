@@ -1,0 +1,27 @@
+.container
+	%table.table.table-striped.table-hover
+		.thead
+			%tr
+				%th Task name
+				%th Task description
+				%th Task due date
+				%th Urgent?
+				%th Important?
+			.tbody
+				- @tasks.each do |t|
+					%tr
+						%td= t.name
+						%td= t.description
+						%td= t.do_by_datetime
+						- if t.urgency == true
+							%td= "Yes"
+						- else t.urgency == false
+							%td= "No"
+						- if t.importance == true
+							%td= "Yes"
+						- else t.importance == false
+							%td= "No"
+						%td= link_to "Delete", t, method: :delete
+
+.col-md-4
+	= button_to "Add a new task", new_task_path, method: :get, class: "btn btn-primary"

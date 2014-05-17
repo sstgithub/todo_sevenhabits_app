@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyString
+  do_by_datetime: 2014-05-16 15:13:20
+  urgency: false
+  importance: false
+
+two:
+  name: MyString
+  description: MyString
+  do_by_datetime: 2014-05-16 15:13:20
+  urgency: false
+  importance: false
