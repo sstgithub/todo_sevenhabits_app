@@ -1,11 +1,13 @@
 class TasksController < ApplicationController
-	
-	def index
+
+	before_filter :load
+
+	def load
 		@tasks = Task.all
+		@task = Task.new
 	end
 
-	def new
-		@task = Task.new
+	def index
 	end
 
 	def create
@@ -13,14 +15,9 @@ class TasksController < ApplicationController
 		if @task.save
 			redirect_to tasks_path
 		else
-			render :new
+			render :index
 		end
 	end
-
-
-	# def show
-	# 	@task = Task.find(params[:id])
-	# end
 
 	def destroy
 		@task = Task.find(params[:id])
@@ -31,12 +28,15 @@ class TasksController < ApplicationController
 
 	def edit
 		@task = Task.find(params[:id])
+		render :index
 	end
 
 	def update
 		@task = Task.find(params[:id])
 		if @task.update_attributes(tasks_params)
 			redirect_to tasks_path
+		else
+			render :index
 		end
 	end
 
