@@ -1,0 +1,16 @@
+%table.table.table-bordered.table-striped.table-hover
+	.thead
+		%tr
+			%th Task name
+			%th Task description
+			%th Task due date
+			%th Task due time
+	.tbody
+		- for t in @tasks
+			%tr
+				%td= t.name
+				%td= t.description
+				%td= format_date(t.do_by_datetime)
+				%td= format_time(t.do_by_datetime)
+				%td= link_to "Edit", edit_task_path(t), remote: true
+				%td= link_to "Delete", t, remote: true, method: :delete

@@ -12,31 +12,25 @@ class TasksController < ApplicationController
 
 	def create
 		@task = Task.new(tasks_params) #form on new page passes through user specified params in tasks_params here otherwise it will all just be nil
-		if @task.save
-			redirect_to tasks_path
-		else
-			render :index
+		if @task.save # figure out if 'if' is necessary!
+			@tasks = Task.all #figure out if this is necessary!
 		end
 	end
 
 	def destroy
 		@task = Task.find(params[:id])
-		if @task.destroy
-			redirect_to tasks_path
-		end
+		@task.destroy
+		@tasks = Task.all #figure out if this is necessary!
 	end
 
 	def edit
 		@task = Task.find(params[:id])
-		render :index
 	end
 
 	def update
 		@task = Task.find(params[:id])
 		if @task.update_attributes(tasks_params)
-			redirect_to tasks_path
-		else
-			render :index
+			@tasks = Task.all
 		end
 	end
 
