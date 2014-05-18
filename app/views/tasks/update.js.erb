@@ -1,0 +1,3 @@
+$(":input:not([type=submit])").val("");
+
+$("#tasks_list").html("<%= escape_javascript( render(:partial => "tasks")) %>");
