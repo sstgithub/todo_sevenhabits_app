@@ -1,1 +1,7 @@
+$('.modal').fadeIn('fast');
+
 $("#task_form").html("<%= escape_javascript(render(:partial => "form"))%>");
+
+$('#close').click(function() {
+		$('.modal').fadeOut('slow');
+	});
