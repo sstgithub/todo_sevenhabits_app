@@ -1,5 +1,5 @@
-$(":input:not([type=submit],[type=select],[type=datetime_select])").val("");
+$(":input:not([type=submit])").val("");
 
 $("#tasks_list").html("<%= escape_javascript( render(:partial => "tasks") ) %>");
 
-$('.new-task').fadeOut('slow');
+$('.modal').fadeOut('fast');

@@ -1,17 +1,116 @@
-%table.table.table-bordered.table-striped.table-hover
-	.thead
-		%tr
-			%th Task name
-			%th Task description
-			%th Task due date
-			%th Task due time
-	.tbody
-		- for t in @tasks
-			%tr
-				%td= t.name
-				%td= t.description
-				%td= format_date(t.do_by_datetime)
-				%td= format_time(t.do_by_datetime)
-				%td= link_to "Edit", edit_task_path(t), remote: true
-				%td= link_to "Destroy", t, remote: true, method: :delete
-				
+/ %table.table.table-bordered.table-striped.table-hover
+/ 	.thead
+/ 		%tr
+/ 			%th Task name
+/ 			%th Task description
+/ 			%th Task due date
+/ 			%th Task due time
+/ 	.tbody
+/ 		- for t in @tasks
+/ 			- if t.urgency == false && t.importance == true
+/ 				%tr
+/ 					%td= t.name
+/ 					%td= t.description
+/ 					%td= format_date(t.do_by_datetime)
+/ 					%td= format_time(t.do_by_datetime)
+/ 					%td= link_to "Edit", edit_task_path(t), remote: true
+/ 					%td= link_to "Destroy", t, remote: true, method: :delete
+
+
+.row
+	.col-md-6
+		%div.panel.panel-default
+			.panel-heading
+				%h3.panel-title
+					Urgent; Important
+			.panel-body
+				%table.table.table-bordered.table-striped.table-hover
+					.thead
+						%tr
+							%th Task name
+							%th Task description
+							%th Task due date
+							%th Task due time
+					.tbody
+						- for t in @tasks
+							- if t.urgency == true && t.importance == true
+								%tr
+									%td= t.name
+									%td= t.description
+									%td= format_date(t.do_by_datetime)
+									%td= format_time(t.do_by_datetime)
+									%td= link_to "Edit", edit_task_path(t), remote: true
+									%td= link_to "Destroy", t, remote: true, method: :delete
+	.col-md-6
+		%div.panel.panel-default
+			.panel-heading
+				%h3.panel-title
+					Not Urgent; Important
+			.panel-body
+				%table.table.table-bordered.table-striped.table-hover
+					.thead
+						%tr
+							%th Task name
+							%th Task description
+							%th Task due date
+							%th Task due time
+					.tbody
+						- @tasks.each do |t|
+							- if t.urgency == false && t.importance == true
+								%tr
+									%td= t.name
+									%td= t.description
+									%td= format_date(t.do_by_datetime)
+									%td= format_time(t.do_by_datetime)
+									%td= link_to "Edit", edit_task_path(t), remote: true
+									%td= link_to "Destroy", t, remote: true, method: :delete
+
+.row
+	.col-md-6
+		%div.panel.panel-default
+			.panel-heading
+				%h3.panel-title
+					Urgent; Not Important
+			.panel-body
+				%table.table.table-bordered.table-striped.table-hover
+					.thead
+						%tr
+							%th Name
+							%th Description
+							%th Due date
+							%th Due time
+							%th Edit
+							%th Delete
+					.tbody
+						- @tasks.each do |t|
+							- if t.urgency == true && t.importance == false
+								%tr
+									%td= t.name
+									%td= t.description
+									%td= format_date(t.do_by_datetime)
+									%td= format_time(t.do_by_datetime)
+									%td= link_to "Edit", edit_task_path(t), remote: true
+									%td= link_to "Destroy", t, remote: true, method: :delete
+	.col-md-6
+		.panel.panel-default
+			.panel-heading
+				%h3.panel-title
+					Not Urgent; Not Important
+			.panel-body
+				%table.table.table-bordered.table-striped.table-hover
+					.thead
+						%tr
+							%th Task name
+							%th Task description
+							%th Task due date
+							%th Task due time
+					.tbody
+						- @tasks.each do |t|
+							- if t.urgency == false && t.importance == false
+								%tr
+									%td= t.name
+									%td= t.description
+									%td= format_date(t.do_by_datetime)
+									%td= format_time(t.do_by_datetime)
+									%td= link_to "Edit", edit_task_path(t), remote: true
+									%td= link_to "Destroy", t, remote: true, method: :delete
