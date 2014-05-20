@@ -13,7 +13,10 @@ class TasksController < ApplicationController
 	def create
 		@task = Task.new(tasks_params) #form on new page passes through user specified params in tasks_params here otherwise it will all just be nil
 		if @task.save # figure out if 'if' is necessary!
-			@tasks = Task.all #figure out if this is necessary!
+			respond_to do |format|
+				format.js { render json: @task }
+				format.html { redirect_to tasks_path}
+			end
 		end
 	end
 

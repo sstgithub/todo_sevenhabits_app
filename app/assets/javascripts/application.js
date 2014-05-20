@@ -13,20 +13,5 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require tasks
 //= require_tree .
-
-$(function(){
-
-	$('#add').click(function() {
-		$('.modal').fadeIn('fast');
-		console.log('Hello')
-	});
-	
-
-	$('#close').click(function() {
-		$('.modal').fadeOut('slow');
-	});
-
-// // 	jQuery('#datetimepicker').datetimepicker();
-
-});
