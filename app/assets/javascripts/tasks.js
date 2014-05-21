@@ -40,13 +40,9 @@ $(function() {
 
 	//WAY 3 - with _task.json.bldr
 	$('form').on('ajax:complete', function(event, data, status, xhr) {
-		var item = $.parseJSON(data.responseText)
+		var item = $.parseJSON(data.responseText).task
 				name = item.name
 				description = item.description
-		console.log(data.responseText)
-		console.log(item)
-		console.log(item.name)
-		console.log(item.description)
 		$('#something').append('<tr><td>' + item.name + '</td><td>' + item.description + '</td></tr>')
 		$('.modal').fadeOut('fast');
 	});

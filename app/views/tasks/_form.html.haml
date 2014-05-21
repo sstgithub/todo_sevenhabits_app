@@ -1,6 +1,8 @@
 .container
 	.row
 	= form_for @task, remote: true do |t|
+		= t.hidden_field :category_id, value: Category.last.id
+		%br
 		= t.label :name
 		= t.text_field :name, class: "new_field"
 		%br

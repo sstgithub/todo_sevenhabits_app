@@ -1,0 +1,12 @@
+%ul#categoryList
+	- @categories.each do |c|
+		%li= c.name
+
+
+
+.container
+	.row
+		= form_for Category.new, remote: true do |f|
+			= f.text_field :name
+			= f.submit
+	
