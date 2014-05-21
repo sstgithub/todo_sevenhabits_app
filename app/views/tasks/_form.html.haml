@@ -1,6 +1,6 @@
 .container
 	.row
-	= form_for @task do |t|
+	= form_for @task, remote: true do |t|
 		= t.label :name
 		= t.text_field :name, class: "new_field"
 		%br
