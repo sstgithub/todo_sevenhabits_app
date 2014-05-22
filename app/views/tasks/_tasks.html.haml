@@ -1,4 +1,4 @@
-%table.table.table-bordered.table-striped.table-hover
+%table.table.table-bordered.table-hover
 	%thead
 		%tr
 			%th Task name
@@ -6,14 +6,15 @@
 			%th Task due date
 			%th Task due time
 	%tbody#something
-		- for t in @tasks
-			%tr
-				%td= t.name
-				%td= t.description
-				%td= format_date(t.do_by_datetime)
-				%td= format_time(t.do_by_datetime)
-				%td= link_to "Edit", edit_task_path(t), remote: true
-				%td= link_to "Delete", t, remote: true, method: :delete
+		- @tasks.each do |task|
+			%tr{id: task.id}
+				%td= task.name
+				%td= task.description
+				%td= format_date(task.do_by_datetime)
+				%td= format_time(task.do_by_datetime)
+				%td= link_to "Edit", edit_task_path(task), remote: true
+				%td.btn.btn-warning.deleter{ data: { 'task-id' => task.id } }
+					Destroy
 
 
 

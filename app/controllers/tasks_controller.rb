@@ -22,8 +22,12 @@ class TasksController < ApplicationController
 
 	def destroy
 		@task = Task.find(params[:id])
-		@task.destroy
-		@tasks = Task.all
+		if @task.destroy
+			respond_to do |format|
+				format.js { render json: @task }
+				format.html { redirect_to tasks_path}
+			end
+		end
 	end
 
 	def edit

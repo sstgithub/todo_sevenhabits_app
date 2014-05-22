@@ -27,6 +27,23 @@ $(function() {
 			
 	// 	});
 
+	$(document).on('click', '.deleter', function() {
+		var item_row = $(this).parents('tr')
+		var task_id = $(this).attr('data-task-id')
+
+		console.log('testingthis')
+		console.log(this)
+		$.ajax({
+			url: '/tasks/' + task_id,
+			type: "DELETE",
+			data: {"_method":"delete"},
+			dataType: "JSON"
+		}).success(function(json) {
+				console.log('testingagain')
+				$(item_row).remove()
+			});
+		});
+
 	//WAY 2 - rails defined way
 	// $('form').on('ajax:complete', function(event, data, status, xhr) {
 	// 	console.log($.parseJSON(data.responseText))
